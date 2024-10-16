@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Login - Livraria TECLOG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1529655683826-aba9b3e77383') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .login-container {
+            background: rgba(0, 0, 0, 0.7); /* Fundo mais escuro e opaco */
+            padding: 2rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px); /* Desfoque no fundo */
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #A67B5B; /* Cor de referência */
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #ddd; /* Texto mais claro */
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #555; /* Bordas mais escuras */
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.2); /* Fundo mais escuro e translúcido */
+            color: #ddd;
+            box-sizing: border-box;
+        }
+
+        .form-group input::placeholder {
+            color: #bbb;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(166, 123, 91, 0.5);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: linear-gradient(135deg, #A67B5B, #8C5D3D); /* Gradiente usando a cor de referência */
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-button:hover {
+            background: linear-gradient(135deg, #8C5D3D, #A67B5B); /* Inverte o gradiente no hover */
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .login-footer a {
+            color: #A67B5B; /* Cor de referência */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .login-footer a:hover {
+            color: #441c02;
+        }
+
+        .success-message {
+            display: none;
+            background-color: #A67B5B; /* Cor de referência */
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Criar Conta</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+            </div>
+            <button type="submit" class="login-button">Criar Conta</button>
+        </form>
+        <div class="login-footer">
+            <p>Já tem uma conta? <a href="index.html">Faça login</a></p>
+        </div>
+        <div class="success-message" id="successMessage">
+            Conta criada com sucesso!
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Impede o envio do formulário imediatamente
+            
+            // Obtém os valores do formulário
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            // Armazena os dados no localStorage
+            localStorage.setItem(email, JSON.stringify({ email, password }));
+
+            document.getElementById("successMessage").style.display = "block"; // Exibe a mensagem de sucesso
+
+            setTimeout(function() {
+                window.location.href = "index.html"; // Redireciona após 2 segundos
+            }, 2000); // Tempo em milissegundos
+        });
+    </script>
+</body>
+</html>
